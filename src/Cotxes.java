@@ -100,13 +100,13 @@ public class Cotxes {
         while (resul1.next()) {
             System.out.println("Matricula " + resul1.getString("matricula"));
             System.out.println("Numero bastidor: " + resul1.getString("num_bastidor"));
-            System.out.println("Marca: " + resul1.getInt("marca"));
+            System.out.println("Marca: " + resul1.getString("marca"));
             System.out.println("Modelo " + resul1.getString("model"));
             System.out.println("Color: " + resul1.getString("color"));
             System.out.println("Numero plazas: " + resul1.getString("num_plazas"));
             System.out.println("Numero portes: " + resul1.getString("num_portes"));
             System.out.println("Grandaria maleter: " + resul1.getString("grandaria_maleter"));
-            System.out.println("Tipus combustible: " + resul1.getInt("tipus_combustible"));
+            System.out.println("Tipus combustible: " + resul1.getString("tipus_combustible"));
             System.out.println("-----------------------------------------------\n");
 
 
@@ -120,40 +120,46 @@ public class Cotxes {
 
         Statement sentencia = conexion.createStatement();
 
-        /*INSERTAR FILAS EN LA TABLA*/
         String query = "INSERT INTO COTXES(matricula, num_bastidor, marca, model, color, num_plazas, num_portes, grandaria_maleter, tipus_combustible)" + "VALUES (?,?,?,?,?,?,?,?,?);";
         PreparedStatement preparedStmt = conexion.prepareStatement(query);
         System.out.println("♡ -- ♡ -- AÑADIR UN COTXE -- ♡ -- ♡");
         System.out.println("Matricula: ");
-        cotxe.setMatricula(sc.nextLine());
+        cotxe.setMatricula(sc2.nextLine());
         System.out.println("Numero bastidor: ");
-        cotxe.setNum_bastidor(sc2.nextInt());
+        cotxe.setNum_bastidor(sc.nextInt());
         System.out.println("Marca: ");
-        cotxe.setMarca(sc.nextLine());
+        cotxe.setMarca(sc2.nextLine());
         System.out.println("Model: ");
-        cotxe.setModel(sc.nextLine());
+        cotxe.setModel(sc2.nextLine());
         System.out.println("Color: ");
         cotxe.setColor(sc2.nextLine());
         System.out.println("Numero plazas: ");
-        cotxe.setNum_plazas(sc2.nextInt());
+        cotxe.setNum_plazas(sc.nextInt());
         System.out.println("Numero portes: ");
-        cotxe.setNum_portes(sc2.nextInt());
+        cotxe.setNum_portes(sc.nextInt());
         System.out.println("Grandaria maleter: ");
-        cotxe.setGrandaria_maleter(sc2.nextInt());
+        cotxe.setGrandaria_maleter(sc.nextInt());
         System.out.println("Tipus combustible: ");
-        int opcions=0;
-        sc.nextLine();
+        System.out.println("1. Gasolina");
+        System.out.println("2. Diesel");
+        System.out.println("3. Electric");
+        cotxe.setTipus_combustible("");
+        int opcions=sc.nextInt();
         do{
-            System.out.println("1. Gasolina");
-            System.out.println("2. Diesel");
-            System.out.println("3. Electric");
-            opcions=sc.nextInt();
-
             switch(opcions){
-
+                case 1:
+                    cotxe.setTipus_combustible("gasolina");
+                    break;
+                case 2:
+                    cotxe.setTipus_combustible("diesel");
+                    break;
+                case 3:
+                    cotxe.setTipus_combustible("electric");
+                    break;
+                default:
+                    System.out.println(" Prueba de nuevo :( ");
             }
-        }while(opcions!=3);
-        cotxe.setTipus_combustible(sc.nextLine());
+        }while(cotxe.getTipus_combustible().equals(""));
 
         preparedStmt.setString(1, cotxe.getMatricula());
         preparedStmt.setInt(2, cotxe.getNum_bastidor());
@@ -166,7 +172,127 @@ public class Cotxes {
         preparedStmt.setString(9, cotxe.getTipus_combustible());
         preparedStmt.executeUpdate();
 
-        System.out.println("♡~ CLIENTE AÑADIDO CON ÉXITO ~♡");
+        System.out.println("♡~ COTXE AÑADIDO CON ÉXITO ~♡");
+
+    }
+
+    //TODO: ELIMINAR UNO
+    public void eliminar() throws SQLException, ClassNotFoundException {
+        Scanner sc = new Scanner(System.in);
+
+        Statement sentencia = conexion.createStatement();
+
+        //hacemos la consulta
+        String query = "DELETE FROM cotxes WHERE matricula= ?";
+        PreparedStatement preparedStmt = conexion.prepareStatement(query);
+        System.out.println("Introduce la MATRICULA del cotxe que quieres eliminar: ");
+        cotxe.setMatricula(sc.next());
+        preparedStmt.setString(1, cotxe.getMatricula());
+
+        preparedStmt.executeUpdate();
+        System.out.println("Cotxe eliminado ");
+
+    }
+
+    //TODO: MODIFICAR
+    public void modificar() throws ClassNotFoundException, SQLException {
+        try {
+            Scanner sc = new Scanner(System.in);
+            Scanner sc2 = new Scanner(System.in);
+            Scanner sc3 = new Scanner(System.in);
+
+            Statement sentencia = conexion.createStatement();
+
+            String query = "UPDATE cotxes SET num_bastidor = ?, marca = ?, model = ?, color = ?, num_plazas = ?, num_portes = ?, grandaria_maleter = ?, tipus_combustible = ? WHERE matricula = ?";
+            PreparedStatement preparedStmt = conexion.prepareStatement(query);
+            System.out.println("Introduce la MATRICULA del cotxe al que quieres cambiar: ");
+            cotxe.setMatricula(sc2.nextLine());
+            System.out.println("Introduce el nuevo NUMERO DE BASTIDOR del cotxe: ");
+            cotxe.setNum_bastidor(sc.nextInt());
+            System.out.println("Introduce la nueva MARCA del cotxe: ");
+            cotxe.setMarca(sc2.nextLine());
+            System.out.println("Introduce el nuevo MODELO del cotxe: ");
+            cotxe.setModel(sc3.nextLine());
+            System.out.println("Introduce la nueva COLOR del cotxe: ");
+            cotxe.setColor(sc2.nextLine());
+            System.out.println("Introduce el nuevo NUMERO DE PLAZAS del cotxe: ");
+            cotxe.setNum_plazas(sc.nextInt());
+            System.out.println("Introduce el nuevo NUMERO DE PORTES del cotxe: ");
+            cotxe.setNum_portes(sc.nextInt());
+            System.out.println("Introduce la nueva GRANDARIA DE MALETER del cotxe: ");
+            cotxe.setGrandaria_maleter(sc3.nextInt());
+            System.out.println("Introduce el nuevo TIPUS DE COMBUSTIBLE del cotxe: ");
+            System.out.println("1. Gasolina");
+            System.out.println("2. Diesel");
+            System.out.println("3. Electric");
+            cotxe.setTipus_combustible("");
+            int opcions=sc.nextInt();
+            do{
+                switch(opcions){
+                    case 1:
+                        cotxe.setTipus_combustible("gasolina");
+                        break;
+                    case 2:
+                        cotxe.setTipus_combustible("diesel");
+                        break;
+                    case 3:
+                        cotxe.setTipus_combustible("electric");
+                        break;
+                    default:
+                        System.out.println(" Prueba de nuevo :( ");
+                }
+            }while(cotxe.getTipus_combustible().equals(""));
+
+            preparedStmt.setInt(1, cotxe.getNum_bastidor());
+            preparedStmt.setString(2, cotxe.getMarca());
+            preparedStmt.setString(3, cotxe.getModel());
+            preparedStmt.setString(4, cotxe.getColor());
+            preparedStmt.setInt(5, cotxe.getNum_plazas());
+            preparedStmt.setInt(6, cotxe.getNum_portes());
+            preparedStmt.setInt(7, cotxe.getGrandaria_maleter());
+            preparedStmt.setString(8, cotxe.getTipus_combustible());
+            preparedStmt.setString(9, cotxe.getMatricula());
+
+            // execute the java preparedstatement
+            preparedStmt.executeUpdate();
+
+            System.out.println("COTXE MODIFICADO");
+
+        } catch (Exception e) {
+            System.err.println("Ha habido una exception!");
+            System.err.println(e.getMessage());
+        }
+    }
+
+    //TODO: MOSTRAR UN
+    public void mostrarCotxe() throws SQLException{
+        Statement sentencia = conexion.createStatement();
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduce la MATRICULA: ");
+        cotxe.setMatricula(sc.nextLine());
+
+        String sql = "SELECT * FROM clientes WHERE dni = '"+cotxe.getMatricula()+"'";
+
+        ResultSet resultado = sentencia.executeQuery(sql);
+
+        System.out.println();
+        System.out.println("COTXE " + cotxe.getMatricula() +": ");
+        while(resultado.next()){
+            System.out.println("------- ♡ MOSTRAR UN COTXE ♡----------");
+            System.out.println("Matricula " + resultado.getString("matricula"));
+            System.out.println("Numero bastidor: " + resultado.getString("num_bastidor"));
+            System.out.println("Marca: " + resultado.getInt("marca"));
+            System.out.println("Modelo " + resultado.getString("model"));
+            System.out.println("Color: " + resultado.getString("color"));
+            System.out.println("Numero plazas: " + resultado.getString("num_plazas"));
+            System.out.println("Numero portes: " + resultado.getString("num_portes"));
+            System.out.println("Grandaria maleter: " + resultado.getString("grandaria_maleter"));
+            System.out.println("Tipus combustible: " + resultado.getInt("tipus_combustible"));
+
+            System.out.println("- ♡ ------- ♡ - ♡ -------- ♡ - ");
+        }
+        System.out.println();
 
     }
 }

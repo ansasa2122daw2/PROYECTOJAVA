@@ -172,7 +172,7 @@ public class Mecanics {
 
         String query = "INSERT INTO MECANICS(dni_mecanic, nomapell, edat, telefono, adreca, ciutat, pais, email, num_permis_conduccio, punts_permis_conduccio, salari, num_seguretat_social, titulacio, anys_empresa)" + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
         PreparedStatement preparedStmt = conexion.prepareStatement(query);
-        System.out.println("♡ -- ♡ -- AÑADIR UN COTXE -- ♡ -- ♡");
+        System.out.println("♡ -- ♡ -- AÑADIR UN MECANICO -- ♡ -- ♡");
         System.out.println("DNI : ");
         mecanic.setDni_mecanic(sc2.nextLine());
         System.out.println("Nom y apellidos: ");

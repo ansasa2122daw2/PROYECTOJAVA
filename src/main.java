@@ -5,6 +5,7 @@ public class main {
     static Clientes cliente = new Clientes();
     static Cotxes cotxe = new Cotxes();
     static Mecanics mecanic = new Mecanics();
+    static Lloguer lloguer = new Lloguer();
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
@@ -86,6 +87,15 @@ public class main {
                         System.out.println("6. Salir ");
                         opcion4 = sc.nextInt();
                         sc.nextLine();
+                        switch (opcion4){
+                            case 1 -> lloguer.añadir();
+                            case 2 -> lloguer.llistar();
+                            case 3 -> lloguer.eliminar();
+                            case 4 -> lloguer.modificar();
+                            case 5 -> lloguer.mostrarLloguer();
+                            case 6 -> opcion4 =6;
+                            default -> System.out.println("Opcioón incorrecta");
+                        }
                     }while(opcion4 !=6);
                     break;
                 case 4:

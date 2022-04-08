@@ -55,7 +55,21 @@ public class Manteniment {
     }
 
     //METODOS
-
     //TODO: LISTAR
+    public void llistar() throws SQLException, ClassNotFoundException{
+        Statement sentencia = conexion.createStatement();
+
+        ResultSet resul1 = sentencia.executeQuery("SELECT * FROM manteniment");
+        System.out.println("♡ -- ♡ -- LISTAR MANTENIMENTS -- ♡ -- ♡");
+        while (resul1.next()) {
+            System.out.println("DNI " + resul1.getString("dni_mecanic"));
+            System.out.println("Matricula: " + resul1.getString("matricula"));
+            System.out.println("Data inici: " + resul1.getString("data_inici"));
+            System.out.println("Data fi: " + resul1.getString("data_fi"));
+            System.out.println("-----------------------------------------------\n");
+
+
+        }
+    }
 }
 

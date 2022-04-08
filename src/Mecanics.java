@@ -166,6 +166,7 @@ public class Mecanics {
     public void añadir() throws SQLException, ClassNotFoundException {
         Scanner sc = new Scanner(System.in);
         Scanner sc2 = new Scanner(System.in);
+        Scanner sc3 = new Scanner(System.in);
 
         Statement sentencia = conexion.createStatement();
 
@@ -197,7 +198,7 @@ public class Mecanics {
         System.out.println("Número seguretat social: ");
         mecanic.setNum_seguretat_social(sc2.nextLine());
         System.out.println("Titulació: ");
-        mecanic.setTitulacio(sc.nextLine());
+        mecanic.setTitulacio(sc3.nextLine());
         System.out.println("Anys empresa: ");
         mecanic.setAnys_empresa(sc.nextInt());
 

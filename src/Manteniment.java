@@ -71,5 +71,59 @@ public class Manteniment {
 
         }
     }
+
+    //TODO: AÑADIR
+    public void añadir() throws SQLException, ClassNotFoundException {
+        Scanner sc = new Scanner(System.in);
+
+        Statement sentencia = conexion.createStatement();
+
+        String query = "INSERT INTO manteniment(dni_mecanic, matricula, data_inici, data_fi)" + "VALUES (?,?,?,?);";
+        PreparedStatement preparedStmt = conexion.prepareStatement(query);
+        System.out.println("♡ -- ♡ -- AÑADIR UN MANTENIMENT -- ♡ -- ♡");
+        System.out.println("DNI: ");
+        manteniment.getDni_mecanic(sc.nextLine());
+        System.out.println("Matricula: ");
+        manteniment.setMatricula(sc.nextLine());
+        System.out.println("Dias: ");
+        manteniment.setDias(sc.nextLine());
+        System.out.println("Preu per dias: ");
+        manteniment.setPreu_per_dias(sc.nextInt());
+
+        preparedStmt.setString(1, loguer.getDni());
+        preparedStmt.setString(2, loguer.getMatricula());
+        preparedStmt.setString(3, loguer.getDias());
+        preparedStmt.setInt(4, loguer.getPreu_per_dias());
+        preparedStmt.setString(5, loguer.getLloc_devolucio());
+        preparedStmt.setBoolean(6, loguer.isRetorn_disposit_ple());
+        preparedStmt.setString(7, loguer.getTipus_asseguranca());
+        preparedStmt.executeUpdate();
+
+        System.out.println("♡~ COTXE AÑADIDO CON ÉXITO ~♡");
+
+    }
+
+
+    //TODO: ELIMINAR UNO
+    public void eliminar() throws SQLException, ClassNotFoundException {
+        Scanner sc = new Scanner(System.in);
+
+        Statement sentencia = conexion.createStatement();
+
+        //hacemos la consulta
+        String query = "DELETE FROM manteniment WHERE dni_mecanic= ? AND matricula= ?;";
+        PreparedStatement preparedStmt = conexion.prepareStatement(query);
+        System.out.println("Introduce el DNI del mecanic que quieres eliminar: ");
+        manteniment.setDni_mecanic(sc.next());
+        System.out.println("Introduce la MATRICULA del coche que quieres eliminar: ");
+        manteniment.setMatricula(sc.next());
+        preparedStmt.setString(1, manteniment.getDni_mecanic());
+        preparedStmt.setString(2, manteniment.getMatricula());
+
+
+        preparedStmt.executeUpdate();
+        System.out.println("Manteniment eliminado ");
+
+    }
 }
 

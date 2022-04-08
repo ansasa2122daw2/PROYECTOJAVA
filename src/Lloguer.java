@@ -203,7 +203,7 @@ public class Lloguer {
             System.out.println("Introduce el nuevo PREU PER DIAS: ");
             loguer.setPreu_per_dias(sc2.nextInt());
             System.out.println("Introduce el nuevo LLOC DE DEVOLUCIÓ: ");
-            loguer.setLloc_devolucio(sc2.nextLine());
+            loguer.setLloc_devolucio(sc3.nextLine());
             System.out.println("Introduce el nuevo RETORN DEL DIPOSIT PLE (true/false): ");
             loguer.setRetorn_disposit_ple(sc2.nextBoolean());
             System.out.println("El nuevo TIPUS D'ASSEGURANÇA: ");
@@ -214,10 +214,10 @@ public class Lloguer {
             do{
                 switch(opcions){
                     case 1:
-                        loguer.setTipus_asseguranca("Amb franquicia");
+                        loguer.setTipus_asseguranca("amb_franquicia");
                         break;
                     case 2:
-                        loguer.setTipus_asseguranca("Sense franquicia");
+                        loguer.setTipus_asseguranca("sense_franquicia");
                         break;
                     default:
                         System.out.println(" Prueba de nuevo :( ");

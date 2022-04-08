@@ -142,20 +142,20 @@ public class Mecanics {
         ResultSet resul1 = sentencia.executeQuery("SELECT * FROM mecanics");
         System.out.println("♡ -- ♡ -- LISTAR MECANICS -- ♡ -- ♡");
         while (resul1.next()) {
-            System.out.println("Matricula " + resul1.getString("dni_mecanic"));
-            System.out.println("Numero bastidor: " + resul1.getString("nomapell"));
-            System.out.println("Marca: " + resul1.getString("edat"));
-            System.out.println("Modelo " + resul1.getString("telefono"));
-            System.out.println("Color: " + resul1.getString("adreca"));
-            System.out.println("Numero plazas: " + resul1.getString("ciutat"));
-            System.out.println("Numero portes: " + resul1.getString("pais"));
-            System.out.println("Grandaria maleter: " + resul1.getString("email"));
-            System.out.println("Tipus combustible: " + resul1.getString("num_permis_conduccio"));
-            System.out.println("Color: " + resul1.getString("punts_permis_conduccio"));
-            System.out.println("Numero plazas: " + resul1.getString("salari"));
-            System.out.println("Numero portes: " + resul1.getString("num_seguretat_social"));
-            System.out.println("Grandaria maleter: " + resul1.getString("titulacio"));
-            System.out.println("Tipus combustible: " + resul1.getString("anys_empresa"));
+            System.out.println("DNI " + resul1.getString("dni_mecanic"));
+            System.out.println("Nombre y apellidos: " + resul1.getString("nomapell"));
+            System.out.println("Edat: " + resul1.getString("edat"));
+            System.out.println("Telefono " + resul1.getString("telefono"));
+            System.out.println("Adreça: " + resul1.getString("adreca"));
+            System.out.println("Ciutat: " + resul1.getString("ciutat"));
+            System.out.println("Pais: " + resul1.getString("pais"));
+            System.out.println("Email: " + resul1.getString("email"));
+            System.out.println("Numero permís conducció: " + resul1.getString("num_permis_conduccio"));
+            System.out.println("Punts permís conducció: " + resul1.getString("punts_permis_conduccio"));
+            System.out.println("Salari: " + resul1.getString("salari"));
+            System.out.println("Numero seguretat social: " + resul1.getString("num_seguretat_social"));
+            System.out.println("Titulació: " + resul1.getString("titulacio"));
+            System.out.println("Anys empresa: " + resul1.getString("anys_empresa"));
             System.out.println("-----------------------------------------------\n");
 
 
@@ -318,23 +318,26 @@ public class Mecanics {
         ResultSet resultado = sentencia.executeQuery(sql);
 
         System.out.println();
-        System.out.println("COTXE " + mecanic.getDni_mecanic() +": ");
+        System.out.println("DNI " + mecanic.getDni_mecanic() +": ");
+        System.out.println(" ------------------------------------ ");
         while(resultado.next()){
-            System.out.println("------- ♡ MOSTRAR UN MECANIC ♡----------");
-            System.out.println("Matricula " + resultado.getString("matricula"));
-            System.out.println("Numero bastidor: " + resultado.getString("num_bastidor"));
-            System.out.println("Marca: " + resultado.getInt("marca"));
-            System.out.println("Modelo " + resultado.getString("model"));
-            System.out.println("Color: " + resultado.getString("color"));
-            System.out.println("Numero plazas: " + resultado.getString("num_plazas"));
-            System.out.println("Numero portes: " + resultado.getString("num_portes"));
-            System.out.println("Grandaria maleter: " + resultado.getString("grandaria_maleter"));
-            System.out.println("Tipus combustible: " + resultado.getInt("tipus_combustible"));
-
+            System.out.println("DNI " + resultado.getString("dni_mecanic"));
+            System.out.println("Nombre y apellidos: " + resultado.getString("nomapell"));
+            System.out.println("Edat: " + resultado.getString("edat"));
+            System.out.println("Telefono " + resultado.getString("telefono"));
+            System.out.println("Adreça: " + resultado.getString("adreca"));
+            System.out.println("Ciutat: " + resultado.getString("ciutat"));
+            System.out.println("Pais: " + resultado.getString("pais"));
+            System.out.println("Email: " + resultado.getString("email"));
+            System.out.println("Numero permís conducció: " + resultado.getString("num_permis_conduccio"));
+            System.out.println("Punts permís conducció: " + resultado.getString("punts_permis_conduccio"));
+            System.out.println("Salari: " + resultado.getString("salari"));
+            System.out.println("Numero seguretat social: " + resultado.getString("num_seguretat_social"));
+            System.out.println("Titulació: " + resultado.getString("titulacio"));
+            System.out.println("Anys empresa: " + resultado.getString("anys_empresa"));
             System.out.println("- ♡ ------- ♡ - ♡ -------- ♡ - ");
         }
         System.out.println();
-
     }
 
 }

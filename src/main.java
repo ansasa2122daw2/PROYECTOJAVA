@@ -117,7 +117,7 @@ public class main {
                             case 2 -> mecanic.llistar();
                             case 3 -> mecanic.eliminar();
                             case 4 -> mecanic.modificar();
-                            case 5 -> mecanic.();
+                            case 5 -> mecanic.mostrarCotxe();
                             case 6 -> opcion6 = 6;
                             default -> System.out.println("Opción incorrecta");
                         }

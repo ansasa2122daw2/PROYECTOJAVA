@@ -250,13 +250,15 @@ public class Lloguer {
         Scanner sc = new Scanner(System.in);
         System.out.println("Introduce la MATRICULA: ");
         loguer.setMatricula(sc.nextLine());
+        System.out.println("Introduce el DNI: ");
+        loguer.setDni(sc.nextLine());
 
         String sql = "SELECT * FROM lloguer WHERE dni = '"+loguer.getDni()+"' AND matricula = '"+loguer.getMatricula()+"'";
 
         ResultSet resultado = sentencia.executeQuery(sql);
 
         System.out.println();
-        System.out.println("LLOGUER " + loguer.getMatricula() +": ");
+        System.out.println("LLOGUER " + loguer.getMatricula() +" "+ loguer.getDni() +" : ");
         while(resultado.next()){
             System.out.println("------- ♡ MOSTRAR UN LLOGUER ♡----------");
             System.out.println("DNI " + resultado.getString("dni"));

@@ -187,7 +187,7 @@ public class Lloguer {
 
             Statement sentencia = conexion.createStatement();
 
-            String query = "UPDATE lloguer SET dni = ?, matricula = ?, dias = ?, preu_per_dia = ?, lloc_devolucio = ?, retorn_diposit_ple = ?, tipus_asseguranca = ? WHERE matricula = ? AND dni = ?";
+            String query = "UPDATE lloguer SET dni = ?, matricula = ?, dias = ?, preu_per_dia = ?, lloc_devolucio = ?, retorn_diposit_ple = ?, tipus_asseguranca = ? WHERE matricula = ? AND dni = ?;";
             PreparedStatement preparedStmt = conexion.prepareStatement(query);
             System.out.println("Introduce la MATRICULA del lloguer al que quieres cambiar: ");
             loguer.setMatricula(sc2.nextLine());

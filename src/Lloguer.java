@@ -123,7 +123,7 @@ public class Lloguer {
         loguer.setPreu_per_dias(sc2.nextInt());
         System.out.println("Lloc devolució: ");
         loguer.setLloc_devolucio(sc3.nextLine());
-        System.out.println("Retorn Diposit ple: ");
+        System.out.println("Retorn Diposit ple (true/false): ");
         loguer.setRetorn_disposit_ple(sc2.nextBoolean());
         System.out.println("Tipus assegurança: ");
         System.out.println("1. Amb franquicia");
@@ -204,7 +204,7 @@ public class Lloguer {
             loguer.setPreu_per_dias(sc2.nextInt());
             System.out.println("Introduce el nuevo LLOC DE DEVOLUCIÓ: ");
             loguer.setLloc_devolucio(sc2.nextLine());
-            System.out.println("Introduce el nuevo RETORN DEL DIPOSIT PLE: ");
+            System.out.println("Introduce el nuevo RETORN DEL DIPOSIT PLE (true/false): ");
             loguer.setRetorn_disposit_ple(sc2.nextBoolean());
             System.out.println("El nuevo TIPUS D'ASSEGURANÇA: ");
             System.out.println("1. Amb franquicia");

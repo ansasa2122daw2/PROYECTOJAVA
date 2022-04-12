@@ -34,7 +34,7 @@ public class Manteniment {
         return data_inici;
     }
 
-    public void setData_inici(String data_inici) {
+    public void setData_inici(Date data_inici) {
         this.data_inici = data_inici;
     }
 
@@ -42,7 +42,7 @@ public class Manteniment {
         return data_fi;
     }
 
-    public void setData_fi(int data_fi) {
+    public void setData_fi(Date data_fi) {
         this.data_fi = data_fi;
     }
 
@@ -86,9 +86,9 @@ public class Manteniment {
         System.out.println("Matricula: ");
         manteniment.setMatricula(sc.nextLine());
         System.out.println("Data inici: ");
-        manteniment.setData_inici(sc.nextLine());
+        manteniment.setData_inici(java.sql.Date.valueOf(sc.nextLine()));
         System.out.println("Data fi: ");
-        manteniment.setData_fi(sc.nextInt());
+        manteniment.setData_fi(java.sql.Date.valueOf(sc.nextLine()));
 
         preparedStmt.setString(1, manteniment.getDni_mecanic());
         preparedStmt.setString(2, manteniment.getMatricula());
@@ -135,16 +135,16 @@ public class Manteniment {
             System.out.println("Introduce la DNI del mecanic al que quieres cambiar: ");
             manteniment.setDni_mecanic(sc.nextLine());
             System.out.println("Introduce el nuevo NOM Y APELLIDOS del mecanic: ");
-            manteniment.(sc2.nextLine());
+            manteniment.setMatricula(sc2.nextLine());
             System.out.println("Introduce la nueva EDAT del mecanic: ");
-            manteniment.setEdat(sc.nextInt());
+            manteniment.setData_inici(java.sql.Date.valueOf(sc2.nextLine()));
             System.out.println("Introduce el nuevo TELEFONO del mecanic: ");
-            manteniment.setTelefono(sc2.nextLine());
+            manteniment.setData_fi(java.sql.Date.valueOf(sc2.nextLine()));
 
             preparedStmt.setString(1, manteniment.getDni_mecanic());
-            preparedStmt.setString(2, manteniment.getNomapell());
-            preparedStmt.setInt(3, manteniment.getEdat());
-            preparedStmt.setString(4, manteniment.getTelefono());
+            preparedStmt.setString(2, manteniment.getMatricula());
+            preparedStmt.setDate(3, manteniment.getData_inici());
+            preparedStmt.setDate(4, manteniment.getData_fi());
 
             // execute the java preparedstatement
             preparedStmt.executeUpdate();
@@ -163,6 +163,7 @@ public class Manteniment {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Introduce la DNI: ");
+        Manteniment mecanic = null;
         mecanic.setDni_mecanic(sc.nextLine());
 
         String sql = "SELECT * FROM mecanics WHERE dni_mecanic = '"+mecanic.getDni_mecanic()+"'";

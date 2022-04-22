@@ -81,14 +81,58 @@ public class Manteniment {
         String query = "INSERT INTO manteniment(dni_mecanic, matricula, data_inici, data_fi)" + "VALUES (?,?,?,?);";
         PreparedStatement preparedStmt = conexion.prepareStatement(query);
         System.out.println("♡ -- ♡ -- AÑADIR UN MANTENIMENT -- ♡ -- ♡");
-        System.out.println("DNI: ");
-        manteniment.setDni_mecanic(sc.nextLine());
-        System.out.println("Matricula: ");
-        manteniment.setMatricula(sc.nextLine());
-        System.out.println("Data inici: ");
-        manteniment.setData_inici(java.sql.Date.valueOf(sc.nextLine()));
-        System.out.println("Data fi: ");
-        manteniment.setData_fi(java.sql.Date.valueOf(sc.nextLine()));
+        String dni_mecanic;
+        ResultSet resul1;
+        do {
+            System.out.println("Introduce el DNI del mecanic que quieres añadir: ");
+            dni_mecanic = sc.next();
+            // Comprobamos que el DNI introducido existe en la base de datos
+            resul1 = sentencia.executeQuery("SELECT * FROM mecanics WHERE dni_mecanic = '" + dni_mecanic + "'");
+            if (resul1.next()) {
+                System.out.println("DNI correcto");
+                manteniment.setDni_mecanic(dni_mecanic);
+            } else {
+                System.out.println("DNI incorrecto");
+            }
+        }while (resul1.next() == false);
+        String matricula = sc.next();
+        ResultSet resul2;
+        do {
+            System.out.println("Introduce la matricula del vehiculo que quieres añadir: ");
+            matricula = sc.next();
+
+            // Comprobamos que la matricula introducida existe en la base de datos
+            resul2 = sentencia.executeQuery("SELECT * FROM cotxes WHERE matricula = '" + matricula + "'");
+            if (resul2.next()) {
+                System.out.println("Matricula correcta");
+                manteniment.setMatricula(matricula);
+            }else{
+                System.out.println("Matricula incorrecta prueba otra vez o escribe '0' para salir");
+            }
+        }while (resul2.next() == false);
+        Date data = null;
+        do {
+            System.out.println("Data inici: ");
+            // Comprobar que la fecha introducida es correcta
+            try {
+                data = Date.valueOf(sc.nextLine());
+            }catch (IllegalArgumentException e){
+                System.out.println("La data introduida no es correcta, el formato ha de ser: YYYY-MM-DD");
+                continue;
+            }
+        }while (data == null);
+        manteniment.setData_inici(data);
+        do {
+            System.out.println("Data fi: ");
+            // Comprobar que la fecha introducida es correcta
+            try {
+                data = Date.valueOf(sc.nextLine());
+            }catch (IllegalArgumentException e){
+                System.out.println("La data introduida no es correcta, el formato ha de ser: YYYY-MM-DD");
+                continue;
+            }
+        }while (data == null);
+        manteniment.setData_fi(data);
 
         preparedStmt.setString(1, manteniment.getDni_mecanic());
         preparedStmt.setString(2, manteniment.getMatricula());
@@ -96,7 +140,7 @@ public class Manteniment {
         preparedStmt.setDate(4, manteniment.getData_fi());
         preparedStmt.executeUpdate();
 
-        System.out.println("♡~ COTXE AÑADIDO CON ÉXITO ~♡");
+        System.out.println("♡~ MANTENIMENT AÑADIDO CON ÉXITO ~♡");
 
     }
 
@@ -158,7 +202,7 @@ public class Manteniment {
     }
 
     //TODO: MOSTRAR UN
-    public void mostrarCotxe() throws SQLException{
+    public void mostrarManteniment() throws SQLException{
         Statement sentencia = conexion.createStatement();
 
         Scanner sc = new Scanner(System.in);
